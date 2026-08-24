@@ -1,0 +1,33 @@
+[project]
+name = "homepage-exposure-status"
+version = "0.1.0"
+description = "Reports whether self-hosted services are actually reachable from the public internet, for display on a Homepage dashboard."
+readme = "README.md"
+authors = [
+    { name = "Pete Bojovic", email = "bojovic@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi>=0.141.1",
+    "httpx>=0.28.1",
+    "uvicorn>=0.52.4",
+]
+
+[build-system]
+requires = ["uv_build>=0.12.5,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pyright>=1.1.411",
+    "pytest>=9.1.1",
+    "pytest-asyncio>=1.4.0",
+    "respx>=0.23.1",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+
+[tool.pyright]
+venvPath = "."
+venv = ".venv"

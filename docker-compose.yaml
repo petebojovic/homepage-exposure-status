@@ -1,0 +1,19 @@
+services:
+  homepage-exposure-status:
+    image: ghcr.io/petebojovic/homepage-exposure-status:latest
+    container_name: homepage-exposure-status
+    ports:
+      - "${PORT:-8000}:8000"
+    environment:
+      - ENABLED_CHECKS=check_host
+      - LOG_LEVEL=INFO
+    restart: unless-stopped
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    # mem_limit/cpus, not deploy.resources.limits. The deploy: key is
+    # Swarm-only and silently ignored by plain `docker compose up`, which is
+    # how most self-hosted users actually run this.
+    mem_limit: 256m
+    cpus: 0.50
